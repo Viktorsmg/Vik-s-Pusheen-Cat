@@ -13,7 +13,7 @@
 
 #include <fstream>
 
-const int CATOPTSCOUNT = 36;
+const int CATOPTSCOUNT = 40;
 
 interactivePusheenMenu::interactivePusheenMenu() {
 	targetCat = nullptr;
@@ -106,6 +106,14 @@ void interactivePusheenMenu::setCatData(int index, double val) {
 			targetCat->whiskerAng = val; break;
 		case 35:
 			targetCat->whiskerFakeOccl = val; break;
+		case 36:
+			targetCat->uvoffset.x = val; break;
+		case 37:
+			targetCat->uvoffset.y = val; break;
+		case 38:
+			targetCat->uvscale.x = val; break;
+		case 39:
+			targetCat->uvscale.y = val; break;
 
 		default: break;
 	}
@@ -186,6 +194,14 @@ void interactivePusheenMenu::modifyCatData(int index, double val) {
 			targetCat->whiskerAng += val; break;
 		case 35:
 			targetCat->whiskerFakeOccl += val; break;
+		case 36:
+			targetCat->uvoffset.x += val; break;
+		case 37:
+			targetCat->uvoffset.y += val; break;
+		case 38:
+			targetCat->uvscale.x += val; break;
+		case 39:
+			targetCat->uvscale.y += val; break;
 
 		default: break;
 	}
@@ -266,6 +282,14 @@ double interactivePusheenMenu::getCatData(int index) {
 			return targetCat->whiskerAng; break;
 		case 35:
 			return targetCat->whiskerFakeOccl; break;
+		case 36:
+			return targetCat->uvoffset.x; break;
+		case 37:
+			return targetCat->uvoffset.y; break;
+		case 38:
+			return targetCat->uvscale.x; break;
+		case 39:
+			return targetCat->uvscale.y; break;
 
 		default: 
 			return -1; break;
@@ -342,9 +366,9 @@ void menuThread(interactivePusheenMenu* menu) {
 		if (in == 'd' || in == 'D')
 			menu->modifyCatData(menu->cursorPos, incr);
 		if (in == 's' || in == 'S')
-			menu->cursorPos = clampF(menu->cursorPos + 1, 0, 35);
+			menu->cursorPos = clampF(menu->cursorPos + 1, 0, CATOPTSCOUNT-1);
 		if (in == 'w' || in == 'W')
-			menu->cursorPos = clampF(menu->cursorPos - 1, 0, 35);
+			menu->cursorPos = clampF(menu->cursorPos - 1, 0, CATOPTSCOUNT-1);
 		if (in == 'l' || in == 'L')
 			incr += 0.0025;
 		if (in == 'j' || in == 'J')

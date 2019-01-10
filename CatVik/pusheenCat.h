@@ -98,6 +98,10 @@ public:
 	//Fake whisker occlusion factor, for the left-side whiskers.
 	double whiskerFakeOccl;
 
+	//Render UV offset.
+	vec2 uvoffset;
+	//Render UV scale.
+	vec2 uvscale;
 
 	pusheenCat();
 	void randomizePusheen();

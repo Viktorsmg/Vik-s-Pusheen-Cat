@@ -40,6 +40,10 @@ const std::string catOptions[] = {
 	"Fur color B",
 	"Whisker angle",
 	"Whiskers fake occlusion factor",//35
+	"UV offset X",
+	"UV offset Y",
+	"UV scale X",
+	"UV scale Y"//39
 };
 
 const std::string catDescriptions[] = {
@@ -79,6 +83,10 @@ const std::string catDescriptions[] = {
 	"Blue channel of the cat's fur/fill color.",
 	"Angle of the bottom whisker. The whiskers are distributed at equal angles between the bottom whisker and the top (X mirrored) whisker.",
 	"Factor from 0 to 1 for how much the whiskers are cut off on the left side to simulate occlusion, or the cat having a 3d face or whatever.",//35
+	"X offset for where the cat is located on the drawn texture. Use this to move the cat horizontally.",
+	"Y offset for where the cat is located on the drawn texture. Use this to move the cat vertically.",
+	"X scale for the cat. Use this to stretch/shrink the cat horizontally.",
+	"Y scale for the cat. Use this to stretch/shrink the cat vertically."//39
 };
 
 struct interactivePusheenMenu {

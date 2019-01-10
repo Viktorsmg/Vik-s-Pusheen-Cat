@@ -81,6 +81,9 @@ pusheenCat::pusheenCat() {
 
 	whiskerAng= 0.4;
 	whiskerFakeOccl = 0.5;
+
+	uvoffset = 0.0;
+	uvscale = 1.0;
 }
 
 void pusheenCat::randomizePusheen() {
@@ -111,8 +114,8 @@ vec3 pusheenCat::samplePusheen(vec2 uv) const {
 	//For some reason, some of the functions have one or more of their coordinates inverted. Or, the function giving the UV coordinates has them inverted.
 	//Either way, there are going to be minuses in places. Lots of minuses in lots of places, starting here.
 	uv = uv+vec2(-0.25,-0.5);
-	uv = uv*-32.0;
-
+	uv = uv*-32.0/uvscale;
+	uv = uv + uvoffset * -8.0;
 	
 	//Fill indicate whether we're inside the cat or not; tailFill - inside the tail. The rest indicate how "close" we are to the respective thing (edge, eye, tail...)
 	double fill=0.0, tailFill=0.0, edge=0.0, eye=0.0;
