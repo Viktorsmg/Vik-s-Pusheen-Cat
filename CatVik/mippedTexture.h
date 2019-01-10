@@ -65,7 +65,7 @@ public:
 
 };
 
-void generateMipArea(ivec2 asize, double *mipmap, const double *tex);
+void generateMipArea(int asize, double *mipmap, const double *baseTex, const int texX);
 
 vec3 sample(mippedTexture tex, vec2 uv);
 vec3 sample(mippedTexture tex, vec2 uv, int level);

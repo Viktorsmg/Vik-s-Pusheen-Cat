@@ -60,7 +60,8 @@ mippedTexture::mippedTexture(const int &x, const int &y, const int &_levels) {
 	//By definition, mipmaps always use less than 1/3 normal texture memory, as each mipmap is 1/4 the size of the previous one...
 	//lim n->8 90deg sum(1/2^2n) = 1/3
 	//Refer to this: https://upload.wikimedia.org/wikipedia/commons/e/ed/Mipmap_illustration2.png
-	//This could probably be done using a formula that includes the mipmap levels, to conserve memory.
+	//This could probably be done using a formula that includes the mipmap levels, to conserve memory, although we'd be conserving only 1/8th memory at best (1 level)
+	//But who makes a mipmap with only 1 level?
 	if (_levels > 0) { mipmaps = new double[x*y]; } else { mipmaps = nullptr; }
 }
 
@@ -80,26 +81,15 @@ int mippedTexture::getSizeY() const {
 }
 
 
-void generateMipArea(ivec2 asize, double *mipmap, const double *tex) {
+void generateMipArea(int asize, double *mipmap, const double *baseTex, const int texX) {
 	vec3 sum;
-
-	//The position of the top left pixel in tex
-	int postop = 0;
-
-	//The position of the bottom left pixel in tex
-	int posbot=0;
-
-	for (int i = 0; i < asize.x; i++) {
-		for (int j = 0; j < asize.y; j++) {
-			postop = i * 6 + j * 6 * asize.x;
-			posbot = i * 6 + (j * 6 + 3)*asize.x;
-			sum =	vec3(tex[postop + 0], tex[postop + 1], tex[postop + 2])  +  vec3(tex[postop+3 + 0], tex[postop+3 + 1], tex[postop+3 + 2]) +
-					vec3(tex[posbot + 0], tex[posbot + 1], tex[posbot + 2])  +  vec3(tex[posbot+3 + 0], tex[posbot+3 + 1], tex[posbot+3 + 2]);
-			sum = sum/4.0;
-
-			mipmap[i * 3 + j * 3 * asize.x + 0] = sum.x;
-			mipmap[i * 3 + j * 3 * asize.x + 1] = sum.y;
-			mipmap[i * 3 + j * 3 * asize.x + 2] = sum.z;
+	const int shiftTex[4] = { 0, 3, texX, texX + 3 };
+	for (int i = 0; i < asize; i++) {
+		sum = 0.0;
+		for (int i = 0; i < 4; i++) {
+			sum = sum + vec3(baseTex[shiftTex[i] + 0],
+							 baseTex[shiftTex[i] + 1],
+							 baseTex[shiftTex[i] + 2] );
 		}
 	}
 }
@@ -113,10 +103,11 @@ void mippedTexture::generateMipmaps() {
 	int mipshift=0;
 	const int threadCount = std::thread::hardware_concurrency();
 	std::thread *threads = new std::thread[threadCount];
-	for (int i = 0; i < threadCount; i++) {
-		threads[i] = std::thread ( generateMipArea, ivec2(mipsizex, mipsizey/threadCount), mipmaps+(mipsizex*mipsizey*3*i)/threadCount, pixels);
+	int totalsize = mipsizex * mipsizey;
+	for (int i = 0; i < (threadCount-1); i++) {
+		threads[i] = std::thread ( generateMipArea, totalsize/threadCount, mipmaps+(mipsizex*mipsizey*3*i)/threadCount, pixels, sizex);
 	}
-
+	threads[threadCount-1] = std::thread(generateMipArea, totalsize / threadCount + totalsize%threadCount, mipmaps + (mipsizex*mipsizey * 3 * (threadCount-1)) / threadCount, pixels, sizex);
 	for (int i = 0; i < threadCount; i++) {
 		threads[i].join();
 	}
