@@ -289,7 +289,8 @@ void interactivePusheenMenu::printMenu() {
 		} else {
 			std::cout << " ";
 		}
-		std::cout << catOptions[i] << ":" << getCatData(i)<<std::endl;
+		std::cout << catOptions[i] << ":" << getCatData(i) << std::endl;
+		if(i==cursorPos) std::cout << "\t" << catDescriptions[i] << std::endl;
 	}
 }
 
