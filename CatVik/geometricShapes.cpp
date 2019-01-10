@@ -87,7 +87,7 @@ double nearCurve(vec2 uv, vec2 curve[], unsigned int curveVerts) {
 	curveVerts--;
 	double res = dist(uv - curve[0]);
 	for (int i = 0; i < curveVerts; i++) {
-		res = min(res, nearEdge(curve[0], curve[1]));
+		res = min(res, nearEdge(curve[0], curve[1], uv));
 	}
 	return res;
 }
