@@ -28,6 +28,8 @@ system("cls");
 */
 #endif
 
+
+
 void drawPixel(SDL_Renderer *renderer, ivec2 pos, ivec3 col) {
 	SDL_SetRenderDrawColor(renderer, col.x, col.y, col.z, 0);
 	SDL_RenderDrawPoint(renderer, pos.x, pos.y);

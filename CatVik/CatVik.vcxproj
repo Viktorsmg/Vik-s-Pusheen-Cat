@@ -139,6 +139,7 @@
     <ClCompile Include="bezier.cpp" />
     <ClCompile Include="commonDraw.cpp" />
     <ClCompile Include="commonMath.cpp" />
+    <ClCompile Include="defines.cpp" />
     <ClCompile Include="geometricShapes.cpp" />
     <ClCompile Include="interactivePusheenMenu.cpp" />
     <ClCompile Include="ivec2.cpp" />

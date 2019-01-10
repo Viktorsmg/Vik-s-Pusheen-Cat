@@ -24,7 +24,6 @@
 #include "interactivePusheenMenu.h"
 using namespace std;
 
-//const int WX = 1280, WY = 720;
 
 
 mippedTexture testTexture(4, 4);
@@ -56,9 +55,14 @@ void initTestTexture() {
 int main(int argc, char * argv[]) {
 	
 	int pusheenRes = 512;
-	if (argc > 1){
+	if (argc > 1) {
 		pusheenRes = atoi(argv[1]);
-		cout << "Cat resolution: " << pusheenRes << endl; sleep_ms(1000);
+		cout << "Received argument for cat resolution: " << pusheenRes << endl; sleep_ms(750);
+	}
+	if (argc > 3) {
+		WX = atoi(argv[2]);
+		WY = atoi(argv[3]);
+		cout << "Received arguments for window size: " << WX << "," << WY << endl; sleep_ms(750);
 	}
 	mippedTexture pusheenTexture(pusheenRes, pusheenRes);
 	simpleTimer timer;
