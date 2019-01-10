@@ -5,19 +5,6 @@
 #include "geometricShapes.h"
 #include <cstdio>
 
-bool point_in_ngon(vec2 points[], unsigned int pointCount, vec2 p) {
-	
-	int inNgon=0;
-	for (int i = 0; i < (pointCount - 1); i++) {
-		inNgon+= lineSide(points[i], points[i + 1], p);
-	}
-	inNgon += lineSide(points[pointCount - 1], points[0], p);
-	//Either we're below all lines, or above them.
-	//printf("InNgon: %d\n", inNgon);
-	return inNgon==pointCount || inNgon==0;
-	
-}
-
 vec2 bezier_point(vec2 p1, vec2 p2, vec2 control, double fac) {
 	//TRIanglePoint1/2
 	vec2 trip1 = lerp(p1, control, fac);

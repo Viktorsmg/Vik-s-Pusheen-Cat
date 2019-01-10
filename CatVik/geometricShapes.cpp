@@ -80,3 +80,27 @@ bool triangle(vec2 l1, vec2 l2, vec2 l3, vec2 vert) {
 
 //Finds the function of a perpendicular line, given a target line function and point
 //vec2 perpendicular(vec2 lf, vec2 p);
+
+double nearCurve(vec2 uv, vec2 curve[], unsigned int curveVerts) {
+	if (curveVerts == 0) return 0;
+	if (curveVerts == 1) return dist(uv - curve[0]);
+	curveVerts--;
+	double res = dist(uv - curve[0]);
+	for (int i = 0; i < curveVerts; i++) {
+		res = min(res, nearEdge(curve[0], curve[1]));
+	}
+	return res;
+}
+
+bool point_in_ngon(vec2 points[], unsigned int pointCount, vec2 p) {
+
+	int inNgon = 0;
+	for (int i = 0; i < (pointCount - 1); i++) {
+		inNgon += lineSide(points[i], points[i + 1], p);
+	}
+	inNgon += lineSide(points[pointCount - 1], points[0], p);
+	//Either we're below all lines, or above them.
+	//printf("InNgon: %d\n", inNgon);
+	return inNgon == pointCount || inNgon == 0;
+
+}

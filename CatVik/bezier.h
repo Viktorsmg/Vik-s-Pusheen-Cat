@@ -2,11 +2,6 @@
 #include "vec2.h"
 #include "commonMath.h"
 
-//Returns whether or not a point is in an ngon
-//Note: Ngon must be convex
-bool point_in_ngon(vec2 points[], unsigned int pointCount, vec2 p);
-
-
 /*
 Returns a bezier curve's point. This one is homegrown!
 Note: fac is reversed, and takes arguments from 0 to 1!

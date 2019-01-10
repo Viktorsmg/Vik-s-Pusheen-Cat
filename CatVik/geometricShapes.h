@@ -39,3 +39,10 @@ bool rect(vec2 v1, vec2 v2, vec2 p);
 bool lineSide(vec2 l1, vec2 l2, vec2 vert);
 
 bool triangle(vec2 l1, vec2 l2, vec2 l3, vec2 vert);
+
+//Returns the distance to a curve defined by a set of points.
+double nearCurve(vec2 uv, vec2 curve[], unsigned int curveVerts);
+
+//Returns whether or not a point is in an ngon
+//Note: Ngon must be convex
+bool point_in_ngon(vec2 points[], unsigned int pointCount, vec2 p);
