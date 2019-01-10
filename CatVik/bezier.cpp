@@ -41,6 +41,18 @@ vec2 bezier_point_cubic(vec2 p1, vec2 p2, vec2 control1, vec2 control2, double f
 	return lerp(trip1,trip2,fac);
 }
 
+void bezier_curve(vec2 p1, vec2 p2, vec2 control, unsigned short precision, vec2 points[]) {
+	for (int i = 0; i < precision; i++) {
+		points[i] = bezier_point(p1, p2, control, double(i + 1) / (precision + 1));
+	}
+}
+
+void bezier_curve_cubic(vec2 p1, vec2 p2, vec2 control1, vec2 control2, unsigned short precision, vec2 points[]) {
+	for (int i = 0; i < precision; i++) {
+		points[i] = bezier_point_cubic(p1, p2, control1, control2, double(i + 1) / (precision + 1));
+	}
+}
+
 bool inBezier(vec2 p1, vec2 p2, vec2 control, vec2 uv, unsigned short precision) {
 	vec2 *points = new vec2[precision + 2];
 	points[0] = p1; points[1] = p2;
