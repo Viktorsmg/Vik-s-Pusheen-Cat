@@ -21,3 +21,5 @@ ivec3 operator+(const int &a, const ivec3 &b);
 ivec3 operator-(const int &a, const ivec3 &b);
 ivec3 operator*(const int &a, const ivec3 &b);
 ivec3 operator/(const int &a, const ivec3 &b);
+
+ivec3 operator-(const ivec3 &a);

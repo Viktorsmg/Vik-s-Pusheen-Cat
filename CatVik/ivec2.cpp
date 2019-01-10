@@ -18,3 +18,5 @@ ivec2 operator+(const int &a, const ivec2 &b) { return ivec2(a + b.x, a + b.y); 
 ivec2 operator-(const int &a, const ivec2 &b) { return ivec2(a - b.x, a - b.y); }
 ivec2 operator*(const int &a, const ivec2 &b) { return ivec2(a * b.x, a * b.y); }
 ivec2 operator/(const int &a, const ivec2 &b) { return ivec2(a / b.x, a / b.y); }
+
+ivec2 operator-(const ivec2 &a) { return ivec2(-a.x, -a.y); }

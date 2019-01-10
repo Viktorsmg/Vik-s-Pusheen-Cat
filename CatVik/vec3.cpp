@@ -18,3 +18,5 @@ vec3 operator+(const double &a, const vec3 &b) { return vec3(a + b.x, a + b.y, a
 vec3 operator-(const double &a, const vec3 &b) { return vec3(a - b.x, a - b.y, a - b.z); }
 vec3 operator*(const double &a, const vec3 &b) { return vec3(a * b.x, a * b.y, a * b.z); }
 vec3 operator/(const double &a, const vec3 &b) { return vec3(a / b.x, a / b.y, a / b.z); }
+
+vec3 operator-(const vec3 &a) { return vec3(-a.x, -a.y, -a.z); }

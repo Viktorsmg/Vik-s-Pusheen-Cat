@@ -18,3 +18,5 @@ ivec3 operator+(const int &a, const ivec3 &b) { return ivec3(a + b.x, a + b.y, a
 ivec3 operator-(const int &a, const ivec3 &b) { return ivec3(a - b.x, a - b.y, a - b.z); }
 ivec3 operator*(const int &a, const ivec3 &b) { return ivec3(a * b.x, a * b.y, a * b.z); }
 ivec3 operator/(const int &a, const ivec3 &b) { return ivec3(a / b.x, a / b.y, a / b.z); }
+
+ivec3 operator-(const ivec3 &a) { return ivec3(-a.x, -a.y, -a.z); }

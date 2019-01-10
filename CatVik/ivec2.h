@@ -22,3 +22,4 @@ ivec2 operator-(const int &a, const ivec2 &b);
 ivec2 operator*(const int &a, const ivec2 &b);
 ivec2 operator/(const int &a, const ivec2 &b);
 
+ivec2 operator-(const ivec2 &a);

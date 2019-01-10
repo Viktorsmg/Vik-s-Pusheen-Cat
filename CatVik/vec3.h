@@ -22,3 +22,4 @@ vec3 operator-(const double &a, const vec3 &b);
 vec3 operator*(const double &a, const vec3 &b);
 vec3 operator/(const double &a, const vec3 &b);
 
+vec3 operator-(const vec3 &a);
