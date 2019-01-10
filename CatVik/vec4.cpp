@@ -1,8 +1,8 @@
 #include "vec4.h"
 
 vec4::vec4() { x = 0; y = 0; z = 0; w = 0; }
-vec4::vec4(double _x, double _y, double _z, double _w) { x = _x; y = _y; z = _z; w = _w; }
-vec4::vec4(double _a) { x = _a; y = _a; z = _a; w = _a; }
+vec4::vec4(const double _x, const double _y, const double _z, const double _w) { x = _x; y = _y; z = _z; w = _w; }
+vec4::vec4(const double _a) { x = _a; y = _a; z = _a; w = _a; }
 
 vec4 operator+(const vec4 &a, const vec4 &b) { return vec4(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w); }
 vec4 operator-(const vec4 &a, const vec4 &b) { return vec4(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w); }

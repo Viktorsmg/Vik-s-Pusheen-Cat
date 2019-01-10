@@ -2,8 +2,8 @@
 struct vec2 {
 	double x, y;
 	vec2();
-	vec2(double _x, double _y);
-	vec2(double _a);
+	vec2(const double _x, const double _y);
+	vec2(const double _a);
 	//~vec2();
 };
 

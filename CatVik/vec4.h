@@ -2,8 +2,8 @@
 struct vec4 {
 	double x, y, z, w;
 	vec4();
-	vec4(double _x, double _y, double _z, double _w);
-	vec4(double _a);
+	vec4(const double _x, const double _y, const double _z, const double _w);
+	vec4(const double _a);
 	//~vec4();
 };
 

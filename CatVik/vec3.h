@@ -2,8 +2,8 @@
 struct vec3 {
 	double x, y, z;
 	vec3();
-	vec3(double _x, double _y, double _z);
-	vec3(double _a);
+	vec3(const double _x, const double _y, const double _z);
+	vec3(const double _a);
 	//~vec3();
 };
 

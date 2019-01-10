@@ -2,8 +2,8 @@
 struct ivec3 {
 	int x, y, z;
 	ivec3();
-	ivec3(int _x, int _y, int _z);
-	ivec3(int _a);
+	ivec3(const int _x, const int _y, const int _z);
+	ivec3(const int _a);
 	//~ivec3();
 };
 

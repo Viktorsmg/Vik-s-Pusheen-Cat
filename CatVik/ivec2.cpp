@@ -1,8 +1,8 @@
 #include "ivec2.h"
 
 ivec2::ivec2() { x = 0; y = 0; }
-ivec2::ivec2(int _x, int _y) { x = _x; y = _y; }
-ivec2::ivec2(int _a) { x = _a; y = _a; }
+ivec2::ivec2(const int _x, const int _y) { x = _x; y = _y; }
+ivec2::ivec2(const int _a) { x = _a; y = _a; }
 
 ivec2 operator+(const ivec2 &a, const ivec2 &b) { return ivec2(a.x + b.x, a.y + b.y); }
 ivec2 operator-(const ivec2 &a, const ivec2 &b) { return ivec2(a.x - b.x, a.y - b.y); }

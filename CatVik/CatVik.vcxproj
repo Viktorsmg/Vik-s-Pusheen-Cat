@@ -153,6 +153,7 @@
     <ClCompile Include="textureBaking.cpp" />
     <ClCompile Include="vec2.cpp" />
     <ClCompile Include="vec3.cpp" />
+    <ClCompile Include="vec4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bezier.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="textureBaking.h" />
     <ClInclude Include="vec2.h" />
     <ClInclude Include="vec3.h" />
+    <ClInclude Include="vec4.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CatVik.rc" />
