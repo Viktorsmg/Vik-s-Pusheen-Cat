@@ -161,7 +161,7 @@ vec3 pusheenCat::getCatColor(catSampleData dat) const{
 
 
 void pusheenCat::updateFeet() {
-	double footDist = length / (footCount - 1);
+	footDist = length / (footCount - 1);
 }
 catSampleData pusheenCat::getFeet(vec2 uv) const {
 	double fill = 0.0, edge = 0.0;
