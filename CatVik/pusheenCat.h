@@ -119,23 +119,39 @@ public:
 
 
 	void randomizePusheen();
+	void updateCat();
 	vec3 samplePusheen(vec2 uv) const;
 	//~pusheenCat();
 
 private:
+
+	double footDist;
+	vec2 front_top, front_bot, frontFat_normal, frontControl;
+	vec2 back_top, back_bot, backFat_normal, backControl;
+
+	vec2 tailBot, tailTop, tailNormal;
+	vec2 tailBaseMid, tailBaseControlT, tailBaseControlB; vec2 tailTip, tailTipControlB, tailTipControlT;
+	vec2 tailTri[3];
+
+	vec2 cat_inside_quad[4];
+	double baseEarDist;
+	vec2 earL[3], earR[3];
+
+	vec2 eyeL;
+
+	vec2 noseTip, noseL, noseR, noseMid;
+	vec2 whiskerCentreL, whiskerCentreR;
 	vec3 getCatColor(catSampleData dat) const;
 
-	catSampleData getTail(vec2 uv) const;
+	catSampleData getTail(vec2 uv) const; void updateTail();
 
-	catSampleData getFeet(vec2 uv) const;
-	catSampleData getFront(vec2 uv) const;
-	catSampleData getBack(vec2 uv) const;
-	catSampleData getTop(vec2 uv) const;
+	catSampleData getFeet(vec2 uv) const; void updateFeet();
+	catSampleData getFront(vec2 uv) const; void updateFront();
+	catSampleData getBack(vec2 uv) const; void updateBack();
+	catSampleData getTop(vec2 uv) const; void updateTop();
 
-	catSampleData getBody(vec2 uv) const;
-
-	catSampleData getFace(vec2 uv) const;
-	catSampleData getWhiskers(vec2 uv) const;
+	catSampleData getFace(vec2 uv) const; void updateFace();
+	catSampleData getWhiskers(vec2 uv) const; void updateWhiskers();
 
 
 };
