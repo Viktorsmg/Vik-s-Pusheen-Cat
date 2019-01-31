@@ -43,7 +43,9 @@ const std::string catOptions[] = {
 	"UV offset X",
 	"UV offset Y",
 	"UV scale X",
-	"UV scale Y"//39
+	"UV scale Y",//39
+	"Tail bottom",
+	"Tail top"
 };
 
 const std::string catDescriptions[] = {
@@ -86,7 +88,9 @@ const std::string catDescriptions[] = {
 	"X offset for where the cat is located on the drawn texture. Use this to move the cat horizontally.",
 	"Y offset for where the cat is located on the drawn texture. Use this to move the cat vertically.",
 	"X scale for the cat. Use this to stretch/shrink the cat horizontally.",
-	"Y scale for the cat. Use this to stretch/shrink the cat vertically."//39
+	"Y scale for the cat. Use this to stretch/shrink the cat vertically.",//39
+	"The bottom of the cat's tail, 0-1, relative to the cat's butt.",
+	"The top of the cat's tail, 0-1, relative to the cat's butt."
 };
 
 struct interactivePusheenMenu {

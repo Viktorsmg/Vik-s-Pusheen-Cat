@@ -13,7 +13,7 @@
 
 #include <fstream>
 
-const int CATOPTSCOUNT = 40;
+const int CATOPTSCOUNT = 42;
 
 interactivePusheenMenu::interactivePusheenMenu() {
 	targetCat = nullptr;
@@ -114,6 +114,10 @@ void interactivePusheenMenu::setCatData(int index, double val) {
 			targetCat->uvscale.x = val; break;
 		case 39:
 			targetCat->uvscale.y = val; break;
+		case 40:
+			targetCat->tailBotFac = val; break;
+		case 41:
+			targetCat->tailTopFac = val; break;
 
 		default: break;
 	}
@@ -202,6 +206,10 @@ void interactivePusheenMenu::modifyCatData(int index, double val) {
 			targetCat->uvscale.x += val; break;
 		case 39:
 			targetCat->uvscale.y += val; break;
+		case 40:
+			targetCat->tailBotFac += val; break;
+		case 41:
+			targetCat->tailTopFac += val; break;
 
 		default: break;
 	}
@@ -290,6 +298,10 @@ double interactivePusheenMenu::getCatData(int index) {
 			return targetCat->uvscale.x; break;
 		case 39:
 			return targetCat->uvscale.y; break;
+		case 40:
+			return targetCat->tailBotFac; break;
+		case 41:
+			return targetCat->tailTopFac; break;
 
 		default: 
 			return -1; break;

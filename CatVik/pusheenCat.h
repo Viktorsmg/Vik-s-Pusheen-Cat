@@ -106,14 +106,18 @@ public:
 	//Fake whisker occlusion factor, for the left-side whiskers.
 	double whiskerFakeOccl;
 
+	//Tail bottom factor
+	double tailBotFac;
+
+	//Tail top factor
+	double tailTopFac;
+
 	//Render UV offset.
 	vec2 uvoffset;
 	//Render UV scale.
 	vec2 uvscale;
 
 	pusheenCat();
-
-	
 
 
 

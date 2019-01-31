@@ -99,6 +99,9 @@ pusheenCat::pusheenCat() {
 	whiskerAng= 0.4;
 	whiskerFakeOccl = 0.5;
 
+	tailBotFac = 0.5;
+	tailTopFac = 0.6;
+
 	uvoffset = 0.0;
 	uvscale = 1.0;
 
@@ -271,9 +274,8 @@ catSampleData pusheenCat::getTop(vec2 uv) const {
 }
 
 void pusheenCat::updateTail() {
-	//Add variable for                                      \/ this \/
-	tailBot = bezier_point(back_bot, back_top, backControl, 1.0 - 0.5);
-	tailTop = bezier_point(back_bot, back_top, backControl, 1.0 - 0.6);
+	tailBot = bezier_point(back_bot, back_top, backControl, 1.0 - tailBotFac);
+	tailTop = bezier_point(back_bot, back_top, backControl, 1.0 - tailTopFac);
 
 	//Used for determining the tail's length/tip
 	tailNormal = normal(tailBot, tailTop);
