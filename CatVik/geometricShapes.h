@@ -45,4 +45,4 @@ double nearCurve(vec2 uv, vec2 curve[], unsigned int curveVerts);
 
 //Returns whether or not a point is in an ngon
 //Note: Ngon must be convex
-bool point_in_ngon(vec2 points[], unsigned int pointCount, vec2 p);
+bool point_in_ngon(const vec2 points[], unsigned int pointCount, vec2 p);
