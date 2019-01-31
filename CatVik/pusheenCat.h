@@ -23,6 +23,14 @@ enum mouthType {
 	OwOMouth
 };
 
+struct catSampleData {
+	double fill=0.0, tailFill=0.0, edge=0.0, eye=0.0;
+	catSampleData();
+	catSampleData(double _fill, double _tailFill, double _edge, double _eye);
+};
+
+catSampleData mixSampleData(const catSampleData &a, const catSampleData &b);
+
 class pusheenCat {
 public:
 	//Is the cat retarded? It's eye distance will be modified.
@@ -104,9 +112,32 @@ public:
 	vec2 uvscale;
 
 	pusheenCat();
+
+	
+
+
+
+
 	void randomizePusheen();
 	vec3 samplePusheen(vec2 uv) const;
 	//~pusheenCat();
+
+private:
+	vec3 getCatColor(catSampleData dat) const;
+
+	catSampleData getTail(vec2 uv) const;
+
+	catSampleData getFeet(vec2 uv) const;
+	catSampleData getFront(vec2 uv) const;
+	catSampleData getBack(vec2 uv) const;
+	catSampleData getTop(vec2 uv) const;
+
+	catSampleData getBody(vec2 uv) const;
+
+	catSampleData getFace(vec2 uv) const;
+	catSampleData getWhiskers(vec2 uv) const;
+
+
 };
 
 vec3 samplePusheen(double x, double y, const pusheenCat &cat);
