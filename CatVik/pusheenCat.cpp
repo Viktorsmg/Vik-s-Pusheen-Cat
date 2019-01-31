@@ -101,6 +101,10 @@ pusheenCat::pusheenCat() {
 
 	uvoffset = 0.0;
 	uvscale = 1.0;
+
+	updateCat();
+	// ??? Cat has to be updated 2x to work properly
+	updateCat();
 }
 
 void pusheenCat::randomizePusheen() {
@@ -124,6 +128,20 @@ void pusheenCat::randomizePusheen() {
 		default: footCount = 4;
 	}
 	frontFat = randItvl(0.1, 0.8);
+
+	updateCat();
+}
+
+void pusheenCat::updateCat() {
+	updateTail();
+
+	updateFeet();
+	updateFront();
+	updateBack();
+	updateTop();
+
+	updateFace();
+	updateWhiskers();
 }
 
 vec3 pusheenCat::getCatColor(catSampleData dat) const{
