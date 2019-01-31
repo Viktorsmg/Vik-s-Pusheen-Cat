@@ -303,7 +303,7 @@ void interactivePusheenMenu::rebakeCat() {
 	std::cout << "\nRebaking with your "<<std::thread::hardware_concurrency()<<" threads...";
 	simpleTimer timer;
 	targetCat->updateCat();
-	threadedBake<pusheenCat>(*catTexture, samplePusheen, *targetCat, std::thread::hardware_concurrency());
+	threadedBake(*catTexture, samplePusheen, *targetCat, std::thread::hardware_concurrency());
 	std::cout << " Bake took " << timer.press() << "ms.\n";
 }
 
