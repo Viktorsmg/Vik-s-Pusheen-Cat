@@ -103,8 +103,6 @@ pusheenCat::pusheenCat() {
 	uvscale = 1.0;
 
 	updateCat();
-	// ??? Cat has to be updated 2x to work properly
-	updateCat();
 }
 
 void pusheenCat::randomizePusheen() {
@@ -133,8 +131,6 @@ void pusheenCat::randomizePusheen() {
 }
 
 void pusheenCat::updateCat() {
-	updateTail();
-
 	updateFeet();
 	updateFront();
 	updateBack();
@@ -142,6 +138,8 @@ void pusheenCat::updateCat() {
 
 	updateFace();
 	updateWhiskers();
+	
+	updateTail();
 }
 
 vec3 pusheenCat::getCatColor(catSampleData dat) const{
@@ -199,7 +197,8 @@ catSampleData pusheenCat::getFront(vec2 uv) const {
 }
 
 void pusheenCat::updateBack() {
-	back_top = vec2(length*backInset, height), back_bot = vec2(-footSize, 0.0);
+	back_top = vec2(length*backInset, height); 
+	back_bot = vec2(-footSize, 0.0);
 	
 	cat_inside_quad[0] = front_bot; cat_inside_quad[1] = front_top;
 	cat_inside_quad[2] = back_top; cat_inside_quad[3] = back_bot;
@@ -275,7 +274,7 @@ catSampleData pusheenCat::getTop(vec2 uv) const {
 }
 
 void pusheenCat::updateTail() {
-	//Add variable for                                          \/ this \/
+	//Add variable for                                      \/ this \/
 	tailBot = bezier_point(back_bot, back_top, backControl, 1.0 - 0.5);
 	tailTop = bezier_point(back_bot, back_top, backControl, 1.0 - 0.6);
 
