@@ -151,7 +151,7 @@ private:
 	catSampleData getTop(vec2 uv) const; void updateTop();
 
 	catSampleData getFace(vec2 uv) const; void updateFace();
-	catSampleData getWhiskers(vec2 uv) const; void updateWhiskers();
+	catSampleData getWhiskers(vec2 uv, double old_fill = 0.0) const; void updateWhiskers();
 
 
 };

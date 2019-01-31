@@ -360,9 +360,9 @@ void pusheenCat::updateWhiskers() {
 	whiskerCentreL = eyeL;
 	whiskerCentreR = eyeL + vec2(genericDist, 0.0);
 }
-catSampleData pusheenCat::getWhiskers(vec2 uv) const {
-	double fill = 0.0, tailFill = 0.0, edge = 0.0, eye = 0.0;
-	
+catSampleData pusheenCat::getWhiskers(vec2 uv, double old_fill) const {
+	double fill = old_fill, tailFill = 0.0, edge = 0.0, eye = 0.0;
+
 	//First batch of whiskers, left side: these are "on top" of the cat. They have fake occlusion, accomplished with lerp.
 	vec2 whiskerEnd = whiskerCentreL - vec2(2.0*whiskerLen, 0.0);
 	whiskerEnd = rotate(whiskerCentreL, whiskerEnd, whiskerAng);
@@ -403,7 +403,7 @@ vec3 pusheenCat::samplePusheen(vec2 uv) const {
 	res = mixSampleData(res, getTop(uv));
 
 	res = mixSampleData(res, getFace(uv));
-	res = mixSampleData(res, getWhiskers(uv));
+	res = mixSampleData(res, getWhiskers(uv,res.fill));
 
 	return getCatColor(res);
 }
