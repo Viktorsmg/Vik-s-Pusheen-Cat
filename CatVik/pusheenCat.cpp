@@ -208,8 +208,8 @@ void pusheenCat::updateBack() {
 	backFat_normal = normal(back_bot, back_top);
 	backControl = lerp(back_top, back_bot, 0.5) + backFat_normal * backFat * vec2(4.0, 8.0);
 }
-catSampleData pusheenCat::getBack(vec2 uv) const {
-	double fill = 0.0, tailFill = 0.0, edge = 0.0, eye = 0.0;
+catSampleData pusheenCat::getBack(vec2 uv, double old_fill) const {
+	double fill = old_fill, edge = 0.0;
 
 	fill += point_in_ngon(cat_inside_quad, 4, uv*vec2(-1.0, 1.0));
 	//Add the edge connecting the 2 ears
@@ -236,7 +236,7 @@ catSampleData pusheenCat::getBack(vec2 uv) const {
 		edge = max(1.0 - circleEdge(uv*vec2(1.0, -1.0) + back_top + vec2(3 * backCircleR, 0.0), backCircleR) / borderThickness, edge);
 	}
 
-	return catSampleData(fill, tailFill, edge, eye);
+	return catSampleData(fill, 0.0, edge, 0.0);
 }
 
 
@@ -250,15 +250,12 @@ void pusheenCat::updateTop() {
 	earR[2] = earL[2] - vec2(genericDist + 2 * earSize, 0.0);
 };
 catSampleData pusheenCat::getTop(vec2 uv) const {
-	double fill = 0.0, tailFill = 0.0, edge = 0.0, eye = 0.0;
+	double fill = 0.0, edge = 0.0;
 
 	edge = max(1.0 - nearEdge(earL[0], earL[1], uv*vec2(-1.0, 1.0)) / borderThickness, edge);
 	edge = max(1.0 - nearEdge(earL[1], earL[2], uv*vec2(-1.0, 1.0)) / borderThickness, edge);
 
 	fill += point_in_ngon(earL, 3, uv*vec2(-1.0, 1.0));
-
-	//We then "shift" this right ear leftwards, turning into... The left ear.
-	
 
 	//Bug: weird pattern on ear segments. Seems to occur exactly only when earSize is in [1.0;2.0] ???
 	//Bonus debugging: Also happens depending on position. If ears are moved away enough, then it doesn't happen either.
@@ -270,7 +267,7 @@ catSampleData pusheenCat::getTop(vec2 uv) const {
 	edge = max(1.0 - nearEdge(earR[1], earR[2], uv*vec2(-1.0, 1.0)) / borderThickness, edge);
 	fill += point_in_ngon(earR, 3, uv*vec2(-1.0, 1.0));
 
-	return catSampleData(fill, tailFill, edge, eye);
+	return catSampleData(fill, 0.0, edge, 0.0);
 }
 
 void pusheenCat::updateTail() {
@@ -344,7 +341,7 @@ void pusheenCat::updateFace() {
 	noseMid = eyeL + vec2(genericDist*0.5, 0.0 - height * 0.1);
 }
 catSampleData pusheenCat::getFace(vec2 uv) const {
-	double fill = 0.0, tailFill = 0.0, edge = 0.0, eye = 0.0;
+	double edge = 0.0, eye = 0.0;
 
 	eye = max(1.0 - filledCircle_edge(uv*vec2(-1.0, 1.0) - eyeL, eyeSize) / borderThickness, eye);
 	eye = max(1.0 - filledCircle_edge(uv*vec2(-1.0, 1.0) - eyeL - vec2(genericDist, 0.0), eyeSize) / borderThickness, eye);
@@ -352,7 +349,7 @@ catSampleData pusheenCat::getFace(vec2 uv) const {
 	edge = max(1.0 - nearCubicBezier(noseL, noseTip, noseMid, noseMid, uv*vec2(-1.0, 1.0), 20) / borderThickness, edge);
 	edge = max(1.0 - nearCubicBezier(noseR, noseTip, noseMid, noseMid, uv*vec2(-1.0, 1.0), 20) / borderThickness, edge);
 
-	return catSampleData(fill, tailFill, edge, eye);
+	return catSampleData(0.0, 0.0, edge, eye);
 }
 
 void pusheenCat::updateWhiskers() {
@@ -360,7 +357,7 @@ void pusheenCat::updateWhiskers() {
 	whiskerCentreR = eyeL + vec2(genericDist, 0.0);
 }
 catSampleData pusheenCat::getWhiskers(vec2 uv, double old_fill) const {
-	double fill = old_fill, tailFill = 0.0, edge = 0.0, eye = 0.0;
+	double fill = old_fill, edge = 0.0;
 
 	//First batch of whiskers, left side: these are "on top" of the cat. They have fake occlusion, accomplished with lerp.
 	vec2 whiskerEnd = whiskerCentreL - vec2(2.0*whiskerLen, 0.0);
@@ -380,7 +377,7 @@ catSampleData pusheenCat::getWhiskers(vec2 uv, double old_fill) const {
 			whiskerEnd = rotate(whiskerCentreR, whiskerEnd, (whiskerAng * -2.0) / (whiskerCount - 1));
 		}
 	}
-	return catSampleData(fill, tailFill, edge, eye);
+	return catSampleData(fill, 0.0, edge, 0.0);
 }
 
 vec3 pusheenCat::samplePusheen(vec2 uv) const {
@@ -398,8 +395,8 @@ vec3 pusheenCat::samplePusheen(vec2 uv) const {
 
 	res = mixSampleData(res, getFeet(uv));
 	res = mixSampleData(res, getFront(uv));
-	res = mixSampleData(res, getBack(uv));
 	res = mixSampleData(res, getTop(uv));
+	res = mixSampleData(res, getBack(uv,res.fill));
 
 	res = mixSampleData(res, getFace(uv));
 	res = mixSampleData(res, getWhiskers(uv,res.fill));

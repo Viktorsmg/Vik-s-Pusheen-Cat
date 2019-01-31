@@ -147,7 +147,7 @@ private:
 
 	catSampleData getFeet(vec2 uv) const; void updateFeet();
 	catSampleData getFront(vec2 uv) const; void updateFront();
-	catSampleData getBack(vec2 uv) const; void updateBack();
+	catSampleData getBack(vec2 uv, double old_fill = 0.0) const; void updateBack();
 	catSampleData getTop(vec2 uv) const; void updateTop();
 
 	catSampleData getFace(vec2 uv) const; void updateFace();
