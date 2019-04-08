@@ -62,6 +62,7 @@ double max(double a, double b);
 
 //Returns -1.0 if the sign is -, 0.0 if the number is a 0, and 1.0 if it's a +.
 double sign(double a, const double eps = 0.00001);
+int isign(double a, const double eps = 0.00001);
 
 //Returns a random floating point value in an interval
 double randItvl(double min, double max);

@@ -160,6 +160,11 @@ double sign(double a, double eps) {
 	return a < (0.0 - eps) ? -1.0 : 0.0; 
 }
 
+int isign(double a, const double eps) {
+	if (a >(0.0 + eps)) return 1;
+	return a < (0.0 - eps) ? -1 : 0;
+}
+
 double randItvl(double min, double max) {
 	return min + (double(rand()) / RAND_MAX)*(max - min);
 }
