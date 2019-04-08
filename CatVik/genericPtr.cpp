@@ -12,6 +12,7 @@ void genericPtr::set(const genericPtr & val) {
 			ptr = nullptr; break;
 		default:
 			//Big panic!
+			break;
 	}
 	type = val.type;
 	selfcontained = true;
@@ -29,6 +30,7 @@ void genericPtr::unset() {
 			; break; //Nothing to delete...
 		default:
 			//Big panic!
+			break;
 	}
 }
 
@@ -90,6 +92,7 @@ genericPtr::~genericPtr() {
 			case 0:
 				break;
 			default:
+				break;
 				//big bad memory leak oh noes!!1!!111!
 		}
 	}
@@ -115,6 +118,7 @@ double genericPtr::get_double() const {
 		case 3:
 			return double(*(bool*)ptr); break;
 		default:
+			break;
 			//Big bad!
 	}
 	return 0.0;
@@ -158,6 +162,7 @@ genericPtr& genericPtr::operator+=(double val) {
 			//Bad 
 			break;
 		default:
+			break;
 			//Big bad!
 	}
 
@@ -180,6 +185,7 @@ void genericPtr::setVal(const genericPtr &val) {
 		case 0:
 			break;
 		default:
+			break;
 			//what de friggies? o ma gad
 	}
 }
@@ -210,6 +216,7 @@ istream& operator>>(istream &is, genericPtr &val) {
 		case 0:
 			return is;
 		default:
+			break;
 			//big poopoo bad bad
 	}
 	return is;
