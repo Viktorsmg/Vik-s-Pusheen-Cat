@@ -49,9 +49,12 @@ public:
 
 	string to_string() const;
 
-	genericPtr& operator+=(int val);
+	genericPtr& operator+=(double val);
+	genericPtr& operator-=(double val);
 
-	friend ostream& operator<<(ostream& os, const genericPtr &ptr);
-	friend istream& operator>>(istream& os, genericPtr &ptr);
+	friend ostream& operator<<(ostream& os, const genericPtr &val);
+	friend istream& operator>>(istream& is, genericPtr &val);
+
+	void setVal(const genericPtr &val);
 };
 

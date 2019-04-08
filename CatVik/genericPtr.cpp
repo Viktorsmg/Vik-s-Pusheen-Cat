@@ -79,10 +79,24 @@ genericPtr::genericPtr(const genericPtr &val) {
 
 
 genericPtr::~genericPtr() {
+	if (selfcontained) {
+		switch (type) {
+			case 1:
+				delete (int*)ptr; break;
+			case 2:
+				delete (double*)ptr; break;
+			case 3:
+				delete (bool*)ptr; break;
+			case 0:
+				break;
+			default:
+				//big bad memory leak oh noes!!1!!111!
+		}
+	}
 }
 
 genericPtr& genericPtr::operator=(const genericPtr &val) {
-	if(this == &val) return;
+	if(this == &val) return *this;
 
 	if(val.selfcontained){
 		unset(); set(val);
@@ -133,9 +147,70 @@ string genericPtr::to_string() const {
 genericPtr& genericPtr::operator+=(double val) {
 	switch (type) {
 		case 1:
-			if (fabs(val) < 1.0) *(int*)ptr += sign(val);
-			*(int*)ptr += int(val);
+			if (fabs(val) < 1.0) *(int*)ptr += isign(val);
+			*(int*)ptr += int(val + 0.5); 
+			break;
+		case 2:
+			*(double*)ptr += val; break;
+		case 3:
+			if (val > 0.0) *(bool*)ptr = true; else *(bool*)ptr = false; break;
+		case 0:
+			//Bad 
+			break;
+		default:
+			//Big bad!
 	}
 
 	return *this;
+}
+
+genericPtr & genericPtr::operator-=(double val) {
+	return *this += -val;
+}
+
+void genericPtr::setVal(const genericPtr &val) {
+	if (type != val.type) return;
+	switch (type) {
+		case 1:
+			*(int*)ptr = *(int*)val.ptr; break;
+		case 2:
+			*(double*)ptr = *(double*)val.ptr; break;
+		case 3:
+			*(bool*)ptr = *(bool*)val.ptr; break;
+		case 0:
+			break;
+		default:
+			//what de friggies? o ma gad
+	}
+}
+
+ostream & operator<<(ostream & os, const genericPtr &val) {
+	switch (val.type) {
+		case 1:
+			return os << *(int*)val.ptr;
+		case 2:
+			return os << *(double*)val.ptr;
+		case 3:
+			return os << *(bool*)val.ptr;
+		case 0:
+			return os << 0;
+		default:
+			return os << "genericPtr Error!";
+	}
+}
+
+istream& operator>>(istream &is, genericPtr &val) {
+	switch (val.type) {
+		case 1:
+			return is >> *(int*)val.ptr;
+		case 2:
+			return is >> *(double*)val.ptr;
+		case 3:
+			return is >> *(bool*)val.ptr;
+		case 0:
+			return is;
+		default:
+			//big poopoo bad bad
+	}
+	return is;
 }
