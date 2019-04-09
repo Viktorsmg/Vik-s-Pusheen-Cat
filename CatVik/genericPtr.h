@@ -42,6 +42,7 @@ public:
 	~genericPtr();
 
 	genericPtr& operator=(const genericPtr &val);
+	genericPtr& operator=(double val);
 
 	double get_double() const;
 	signed char get_type() const;

@@ -109,6 +109,22 @@ genericPtr& genericPtr::operator=(const genericPtr &val) {
 	return *this;
 }
 
+genericPtr& genericPtr::operator=(double val) {
+	if (selfcontained) {
+		unset(); set(val);
+	} else {
+		switch (type) {
+			case 1:
+				*(int*)ptr = (int)val; break;
+			case 2:
+				*(double*)ptr = val; break;
+			case 3:
+				*(bool*)ptr = (bool)val; break;
+		}
+	}
+	return *this;
+}
+
 double genericPtr::get_double() const {
 	switch (type) {
 		case 1:
