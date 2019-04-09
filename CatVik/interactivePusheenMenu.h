@@ -99,9 +99,6 @@ struct interactivePusheenMenu {
 	mippedTexture* catTexture;
 	int cursorPos;
 
-	void setCatData(int index, double val);
-	void modifyCatData(int index,double val);
-	double getCatData(int index);
 	void rebakeCat();
 	void printMenu();
 

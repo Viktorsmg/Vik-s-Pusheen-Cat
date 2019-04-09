@@ -111,7 +111,7 @@ genericPtr& genericPtr::operator=(const genericPtr &val) {
 
 genericPtr& genericPtr::operator=(double val) {
 	if (selfcontained) {
-		unset(); set(val);
+		unset(); set(genericPtr(val));
 	} else {
 		switch (type) {
 			case 1:
@@ -206,34 +206,3 @@ void genericPtr::setVal(const genericPtr &val) {
 	}
 }
 
-ostream & operator<<(ostream & os, const genericPtr &val) {
-	switch (val.type) {
-		case 1:
-			return os << *(int*)val.ptr;
-		case 2:
-			return os << *(double*)val.ptr;
-		case 3:
-			return os << *(bool*)val.ptr;
-		case 0:
-			return os << 0;
-		default:
-			return os << "genericPtr Error!";
-	}
-}
-
-istream& operator>>(istream &is, genericPtr &val) {
-	switch (val.type) {
-		case 1:
-			return is >> *(int*)val.ptr;
-		case 2:
-			return is >> *(double*)val.ptr;
-		case 3:
-			return is >> *(bool*)val.ptr;
-		case 0:
-			return is;
-		default:
-			break;
-			//big poopoo bad bad
-	}
-	return is;
-}

@@ -30,11 +30,11 @@ public:
 
 
 	genericPtr();
-	genericPtr(const int &val);
+	explicit genericPtr(const int &val);
 	genericPtr(int *val);
-	genericPtr(const double &val);
+	explicit genericPtr(const double &val);
 	genericPtr(double *val);
-	genericPtr(const bool &val);
+	explicit genericPtr(const bool &val);
 	genericPtr(bool *val);
 
 	genericPtr(const genericPtr &val);
@@ -53,9 +53,45 @@ public:
 	genericPtr& operator+=(double val);
 	genericPtr& operator-=(double val);
 
-	friend ostream& operator<<(ostream& os, const genericPtr &val);
-	friend istream& operator>>(istream& is, genericPtr &val);
+	template<typename streamtype>
+	friend streamtype& operator<<(streamtype& os, const genericPtr &val);
+	template<typename streamtype>
+	friend streamtype& operator>>(streamtype& is, genericPtr &val);
 
 	void setVal(const genericPtr &val);
 };
 
+template<typename streamtype>
+streamtype& operator<<(streamtype& os, const genericPtr &val) {
+	switch (val.type) {
+		case 1:
+			os << *(int*)val.ptr; break;
+		case 2:
+			os << *(double*)val.ptr; break;
+		case 3:
+			os << *(bool*)val.ptr; break;
+		case 0:
+			os << 0; break;
+		default:
+			os << "genericPtr Error!"; break;
+	}
+	return os;
+}
+
+template<typename streamtype>
+streamtype& operator>>(streamtype& is, genericPtr &val) {
+	switch (val.type) {
+		case 1:
+			is >> *(int*)val.ptr; break;
+		case 2:
+			is >> *(double*)val.ptr; break;
+		case 3:
+			is >> *(bool*)val.ptr; break;
+		case 0:
+			break;
+		default:
+			break;
+			//big poopoo bad bad
+	}
+	return is;
+}
