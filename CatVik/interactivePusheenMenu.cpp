@@ -69,6 +69,8 @@ void interactivePusheenMenu::importCatData() {
 	std::cout << "\nSuccessfully imported cat settings...\n Press any movement key to refresh the settings panel.\n";
 }
 
+#include <filesystem>//for current_path
+
 void interactivePusheenMenu::exportCatData() {
 	std::ofstream outFile("pusheenCatData.ini");
 	if (!outFile.good()) {
@@ -78,7 +80,7 @@ void interactivePusheenMenu::exportCatData() {
 	for (int i = 0; i < CATOPTSCOUNT; i++) {
 		outFile << (*targetCat)[i] << " ";
 	}
-	std::cout << "\nSuccessfully exported cat settings...\n";
+	std::cout << "\nSuccessfully exported cat settings in " << std::experimental::filesystem::current_path() <<" ...\n";
 }
 
 void menuThread(interactivePusheenMenu* menu) {
