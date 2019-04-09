@@ -31,6 +31,8 @@ struct catSampleData {
 
 catSampleData mixSampleData(const catSampleData &a, const catSampleData &b);
 
+#include "genericPtr.h"
+
 class pusheenCat {
 public:
 	//Is the cat retarded? It's eye distance will be modified.
@@ -126,6 +128,8 @@ public:
 	void updateCat();
 	vec3 samplePusheen(vec2 uv) const;
 	//~pusheenCat();
+
+	genericPtr operator[](int index);
 
 private:
 
