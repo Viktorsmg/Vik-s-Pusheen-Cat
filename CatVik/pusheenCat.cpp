@@ -406,6 +406,100 @@ vec3 pusheenCat::samplePusheen(vec2 uv) const {
 	return getCatColor(res);
 }
 
+genericPtr pusheenCat::operator[](int index) {
+
+	switch (index) {
+		case 0:
+			return genericPtr(&retarded); break;
+		case 1:
+			break;//OwO here
+		case 2:
+			return genericPtr(&eyeDistMod);break;
+		case 3:
+			return genericPtr(&genericDist); break;
+		case 4:
+			return genericPtr(&eyeSize); break;
+		case 5:
+			return genericPtr(&footSize); break;
+		case 6:
+			return genericPtr(&footCount); break;
+		case 7:
+			return genericPtr(&frontFat); break;
+		case 8:
+			return genericPtr(&backFat); break;
+		case 9:
+			return genericPtr(&backInset); break;
+		case 10:
+			return genericPtr(&backCircleR); break;
+		case 11:
+			return genericPtr(&height); break;
+		case 12:
+			return genericPtr(&length); break;
+		case 13:
+			return genericPtr(&whiskerCount); break;
+		case 14:
+			return genericPtr(&whiskerLen); break;
+		case 15:
+			return genericPtr(&tailLen); break;
+		case 16:
+			return genericPtr(&tailSize); break;
+		case 17:
+			return genericPtr(&earSize); break;
+		case 18:
+			break; //tail type
+		case 19:
+			break; //eyebrow type
+		case 20:
+			break; //mouth type
+		case 21:
+			return genericPtr(&borderThickness); break;
+		case 22:
+			return genericPtr(&borderColor.x); break;
+		case 23:
+			return genericPtr(&borderColor.y); break;
+		case 24:
+			return genericPtr(&borderColor.z); break;
+		case 25:
+			return genericPtr(&eyeColor.x); break;
+		case 26:
+			return genericPtr(&eyeColor.y); break;
+		case 27:
+			return genericPtr(&eyeColor.z); break;
+		case 28:
+			return genericPtr(&tailColor.x); break;
+		case 29:
+			return genericPtr(&tailColor.y); break;
+		case 30:
+			return genericPtr(&tailColor.z); break;
+		case 31:
+			return genericPtr(&furColor.x); break;
+		case 32:
+			return genericPtr(&furColor.y); break;
+		case 33:
+			return genericPtr(&furColor.z); break;
+		case 34:
+			return genericPtr(&whiskerAng); break;
+		case 35:
+			return genericPtr(&whiskerFakeOccl); break;
+		case 36:
+			return genericPtr(&uvoffset.x); break;
+		case 37:
+			return genericPtr(&uvoffset.y); break;
+		case 38:
+			return genericPtr(&uvscale.x); break;
+		case 39:
+			return genericPtr(&uvscale.y); break;
+		case 40:
+			return genericPtr(&tailBotFac); break;
+		case 41:
+			return genericPtr(&tailTopFac); break;
+
+		default: break;
+	}
+
+	return genericPtr(0.0);
+}
+
 //pusheenCat::~pusheenCat() {}
 
 vec3 samplePusheen(double x, double y, const pusheenCat &cat) {

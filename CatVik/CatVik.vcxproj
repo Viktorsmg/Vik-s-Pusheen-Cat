@@ -141,6 +141,7 @@
     <ClCompile Include="commonDraw.cpp" />
     <ClCompile Include="commonMath.cpp" />
     <ClCompile Include="defines.cpp" />
+    <ClCompile Include="genericPtr.cpp" />
     <ClCompile Include="geometricShapes.cpp" />
     <ClCompile Include="interactivePusheenMenu.cpp" />
     <ClCompile Include="ivec2.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="commonDraw.h" />
     <ClInclude Include="commonMath.h" />
     <ClInclude Include="defines.h" />
+    <ClInclude Include="genericPtr.h" />
     <ClInclude Include="geometricShapes.h" />
     <ClInclude Include="interactivePusheenMenu.h" />
     <ClInclude Include="ivec2.h" />
