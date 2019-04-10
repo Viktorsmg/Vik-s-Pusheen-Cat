@@ -61,11 +61,7 @@ void interactivePusheenMenu::importCatData() {
 	}
 	double newval = 0;
 	for (int i = 0; i < CATOPTSCOUNT; i++) {
-		// TODO: Find out why this doesn't work if you put in the cat[i] directly, and fix it.
-		genericPtr ph = (*targetCat)[i];
-		inFile >> ph;
-		// ??? Doesn't work if you put in targetCat[i] directly
-		// But output does!
+		inFile >> (*targetCat)[i];
 	}
 	std::cout << "\nSuccessfully imported cat settings...\n Press any movement key to refresh the settings panel.\n";
 }

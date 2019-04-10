@@ -57,6 +57,8 @@ public:
 	friend streamtype& operator<<(streamtype& os, const genericPtr &val);
 	template<typename streamtype>
 	friend streamtype& operator>>(streamtype& is, genericPtr &val);
+	template<typename streamtype>
+	friend streamtype& operator>>(streamtype& is, genericPtr &&val);
 
 	void setVal(const genericPtr &val);
 };
@@ -80,6 +82,24 @@ streamtype& operator<<(streamtype& os, const genericPtr &val) {
 
 template<typename streamtype>
 streamtype& operator>>(streamtype& is, genericPtr &val) {
+	switch (val.type) {
+		case 1:
+			is >> *(int*)val.ptr; break;
+		case 2:
+			is >> *(double*)val.ptr; break;
+		case 3:
+			is >> *(bool*)val.ptr; break;
+		case 0:
+			break;
+		default:
+			break;
+			//big poopoo bad bad
+	}
+	return is;
+}
+
+template<typename streamtype>
+streamtype& operator>>(streamtype& is, genericPtr &&val) {
 	switch (val.type) {
 		case 1:
 			is >> *(int*)val.ptr; break;
